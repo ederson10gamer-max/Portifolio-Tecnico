@@ -1,0 +1,547 @@
+/* ==========================================================
+   RESET & BASE
+   ========================================================== */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --bg: #111315;
+    --bg-alt: #16191c;
+    --bg-alt-2: #1c2024;
+    --border: #262b30;
+
+    --text: #eceff1;
+    --text-dim: #9aa4ad;
+
+    --accent: #4da3ff;
+    --accent-2: #ffb454;
+
+    --font-display: 'Space Grotesk', 'Segoe UI', sans-serif;
+    --font-body: 'Inter', 'Segoe UI', sans-serif;
+    --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+
+    --radius: 10px;
+    --container: 1100px;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+}
+
+body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 {
+    font-family: var(--font-display);
+    line-height: 1.2;
+    color: var(--text);
+}
+
+a {
+    color: inherit;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+ul {
+    list-style: none;
+}
+
+.pular-conteudo {
+    position: absolute;
+    left: -999px;
+    top: auto;
+    background: var(--accent);
+    color: var(--bg);
+    padding: 10px 16px;
+    border-radius: 0 0 8px 0;
+    z-index: 999;
+}
+
+.pular-conteudo:focus {
+    left: 0;
+    top: 0;
+}
+
+:focus-visible {
+    outline: 2px solid var(--accent-2);
+    outline-offset: 3px;
+}
+
+/* ==========================================================
+   LAYOUT — largura de conteúdo aplicada a header, main, footer
+   ========================================================== */
+
+header .nav-principal,
+main > section,
+footer {
+    max-width: var(--container);
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 24px;
+    padding-right: 24px;
+}
+
+main > section {
+    padding-top: 90px;
+    padding-bottom: 90px;
+    border-bottom: 1px solid var(--border);
+}
+
+main > section:last-of-type {
+    border-bottom: none;
+}
+
+/* Eyebrow / assinatura visual estilo "trilha de circuito" */
+
+.eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    color: var(--accent-2);
+    margin-bottom: 10px;
+}
+
+.eyebrow .no {
+    width: 8px;
+    height: 8px;
+    background-color: var(--accent-2);
+    border-radius: 2px;
+    box-shadow: 0 0 0 3px rgba(255, 180, 84, 0.15);
+}
+
+section > h2 {
+    font-size: 2rem;
+    margin-bottom: 30px;
+}
+
+/* ==========================================================
+   HEADER / NAV
+   ========================================================== */
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+
+    background-color: rgba(17, 19, 21, 0.9);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+}
+
+.nav-principal {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 14px;
+
+    padding-top: 18px;
+    padding-bottom: 18px;
+}
+
+.logo {
+    font-family: var(--font-mono);
+    font-weight: 600;
+    font-size: 1.1rem;
+    text-decoration: none;
+    color: var(--text);
+}
+
+.logo span {
+    color: var(--accent-2);
+}
+
+.nav-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 22px;
+}
+
+.nav-links a {
+    font-size: 0.9rem;
+    text-decoration: none;
+    color: var(--text-dim);
+    transition: color 0.15s ease;
+}
+
+.nav-links a:hover,
+.nav-links a:focus-visible {
+    color: var(--accent);
+}
+
+.nav-links .nav-cta {
+    color: var(--accent);
+    font-weight: 600;
+}
+
+/* ==========================================================
+   SEÇÃO INICIAL (hero)
+   ========================================================== */
+
+#inicio {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 50px;
+
+    min-height: 90vh;
+    padding-top: 60px;
+}
+
+.subtitulo {
+    font-family: var(--font-mono);
+    color: var(--accent);
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+}
+
+.inicio-texto h1 {
+    font-size: 4rem;
+    margin-bottom: 5px;
+}
+
+.inicio-texto h2 {
+    color: var(--accent);
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+.inicio-texto p {
+    max-width: 500px;
+    color: var(--text-dim);
+}
+
+.inicio-acoes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.botao {
+    display: inline-block;
+
+    margin-top: 25px;
+    padding: 13px 24px;
+
+    background-color: var(--accent);
+    color: #111315;
+
+    text-decoration: none;
+    font-weight: bold;
+
+    border-radius: 8px;
+    border: 1px solid var(--accent);
+    transition: opacity 0.15s ease;
+}
+
+.botao:hover,
+.botao:focus-visible {
+    opacity: 0.85;
+}
+
+.botao-secundario {
+    background-color: transparent;
+    color: var(--text);
+    border: 1px solid var(--border);
+}
+
+.inicio-imagem img {
+    width: 100%;
+    max-height: 500px;
+
+    object-fit: cover;
+
+    border-radius: 15px;
+    border: 1px solid var(--border);
+}
+
+/* ==========================================================
+   SOBRE
+   ========================================================== */
+
+.sobre-conteudo {
+    max-width: 720px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    color: var(--text-dim);
+}
+
+/* ==========================================================
+   HABILIDADES
+   ========================================================== */
+
+.lista-habilidades {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px 20px;
+    max-width: 800px;
+}
+
+.lista-habilidades li {
+    position: relative;
+    padding-left: 22px;
+    color: var(--text-dim);
+    font-size: 0.95rem;
+}
+
+.lista-habilidades li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 9px;
+    width: 8px;
+    height: 8px;
+    background-color: var(--accent);
+    border-radius: 2px;
+}
+
+/* ==========================================================
+   CARDS (serviços, projetos, formação)
+   ========================================================== */
+
+.grid-cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+#projetos .grid-cards,
+#formacao .grid-cards {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.card {
+    background-color: var(--bg-alt);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px;
+}
+
+.card h3 {
+    font-size: 1.15rem;
+    margin-bottom: 10px;
+}
+
+.card p {
+    color: var(--text-dim);
+    font-size: 0.95rem;
+}
+
+.card-projeto img {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    border-radius: 6px;
+    background-color: var(--bg-alt-2);
+    margin-bottom: 16px;
+}
+
+/* ==========================================================
+   ABORDAGEM / CTA
+   ========================================================== */
+
+#abordagem p,
+.secao-cta p {
+    max-width: 640px;
+    color: var(--text-dim);
+}
+
+.secao-cta {
+    text-align: center;
+}
+
+.secao-cta h2 {
+    margin-bottom: 14px;
+}
+
+.secao-cta p {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+}
+
+/* ==========================================================
+   CONTATO
+   ========================================================== */
+
+#contato > p {
+    max-width: 600px;
+    color: var(--text-dim);
+    margin-bottom: 30px;
+}
+
+.lista-contato {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    max-width: 500px;
+}
+
+.lista-contato li {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+}
+
+.lista-contato .rotulo {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+    color: var(--accent-2);
+    text-transform: uppercase;
+}
+
+.lista-contato a {
+    text-decoration: none;
+    color: var(--text);
+    font-size: 1.05rem;
+}
+
+.lista-contato a:hover,
+.lista-contato a:focus-visible {
+    color: var(--accent);
+}
+
+/* ==========================================================
+   FOOTER
+   ========================================================== */
+
+footer {
+    padding-top: 60px;
+    padding-bottom: 40px;
+    text-align: center;
+}
+
+footer h2 {
+    font-size: 1.4rem;
+    margin-bottom: 20px;
+}
+
+.contatos {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 26px;
+    margin-bottom: 30px;
+}
+
+.contatos a {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    color: var(--text-dim);
+    font-size: 0.9rem;
+    transition: color 0.15s ease;
+}
+
+.contatos a:hover,
+.contatos a:focus-visible {
+    color: var(--accent);
+}
+
+footer > p {
+    color: var(--text-dim);
+    font-size: 0.85rem;
+}
+
+/* ==========================================================
+   RESPONSIVO — TABLET
+   ========================================================== */
+
+@media (max-width: 900px) {
+    #inicio {
+        grid-template-columns: 1fr;
+        min-height: auto;
+        padding-top: 40px;
+        gap: 36px;
+    }
+
+    .inicio-imagem {
+        order: -1;
+    }
+
+    .inicio-texto h1 {
+        font-size: 3rem;
+    }
+
+    .grid-cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    #projetos .grid-cards,
+    #formacao .grid-cards {
+        grid-template-columns: 1fr;
+    }
+
+    main > section {
+        padding-top: 64px;
+        padding-bottom: 64px;
+    }
+}
+
+/* ==========================================================
+   RESPONSIVO — CELULAR
+   ========================================================== */
+
+@media (max-width: 600px) {
+    .nav-links {
+        gap: 14px;
+        font-size: 0.85rem;
+    }
+
+    .inicio-texto h1 {
+        font-size: 2.4rem;
+    }
+
+    .inicio-texto h2 {
+        font-size: 1.2rem;
+    }
+
+    section > h2 {
+        font-size: 1.6rem;
+    }
+
+    .grid-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .lista-habilidades {
+        grid-template-columns: 1fr;
+    }
+
+    .botao {
+        width: 100%;
+        text-align: center;
+    }
+}
